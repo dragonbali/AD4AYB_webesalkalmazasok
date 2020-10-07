@@ -10,6 +10,8 @@ public class Main {
 		x = a - b;
 		
 		System.out.println("result: " + x);
+		
+		//I just kept the subtraction
 
 	}
 
