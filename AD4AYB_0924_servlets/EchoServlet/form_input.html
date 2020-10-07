@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
+  <title>Toltsd ki!</title>
+</head>
+ 
+<body>
+<h2>Toltsd ki!</h2>
+<form method="post" action="echo">
+  <fieldset>
+    <legend>Személyes adatok</legend>
+    Név: <input type="text" name="username" /><br /><br />
+    Jelszó: <input type="password" name="password" /><br /><br />
+    Nem: <input type="radio" name="gender" value="m" checked />Male
+    <input type="radio" name="gender" value="f" />Female<br /><br />
+    Életkor: <select name = "age">
+      <option value="1">&lt; 1 éves</option>
+      <option value="99">1 és 99 kozott</option>
+      <option value="100">&gt; 99 folott</option>
+    </select>
+  </fieldset>
+ 
+  <fieldset>
+    <legend>Programozási nyelvek</legend>
+    <input type="checkbox" name="language" value="java" checked />Java
+    <input type="checkbox" name="language" value="c" />C/C++
+    <input type="checkbox" name="language" value="cs" />C#
+  </fieldset>
+ 
+  <fieldset>
+    <legend>Instrukciók</legend>
+    <textarea rows="5" cols="30" name="instruction">Írj be valamit...</textarea>
+  </fieldset>
+ 
+  <input type="hidden" name="secret" value="888" />
+  <input type="submit" value="Kuld" />
+  <input type="reset" value="Torol" />
+</form>
+</body>
+</html>
