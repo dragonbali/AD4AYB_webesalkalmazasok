@@ -9,7 +9,7 @@ public class Main {
 		int x;
 		x = a - b;
 		
-		System.out.println(x);
+		System.out.println("result: " + x);
 
 	}
 
