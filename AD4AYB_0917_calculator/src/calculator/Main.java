@@ -7,7 +7,7 @@ public class Main {
 		int a = 5;
 		int b = 2;
 		int x;
-		x = a + b;
+		x = a - b;
 		
 		System.out.println(x);
 
