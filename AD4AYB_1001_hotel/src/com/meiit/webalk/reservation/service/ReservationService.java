@@ -8,7 +8,7 @@ public interface ReservationService {
 	void saveBookingPerson(BookingPerson person);
 	BookingPerson findBookingPerson();
 	List<Hotel> findAllHotels();
-	void saveReservation(Reservation res);
+	void saveReservation(Reservation reservation);
 	List<Reservation> findAllReservations();
 	void checkIn();
 	void checkOut();

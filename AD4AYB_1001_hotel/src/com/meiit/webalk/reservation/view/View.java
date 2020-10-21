@@ -10,13 +10,8 @@ public interface View {
 	void printBalance(BookingPerson person);
 	void printRooms(List<Hotel>hotels);
 	Room selectRoom(List<Hotel>hotels);
-	void printReservationSaved(Reservation res);
+	void printReservationSaved(Reservation reservation);
 	void printNotEnoughBalance(BookingPerson person);
-	void printCheckIn(Reservation res);
-	void printCheckOut(Reservation res,BookingPerson person);
-	
-	
-	
-	
-	
+	void printCheckIn(Reservation reservation);
+	void printCheckOut(Reservation reservation,BookingPerson person);
 }

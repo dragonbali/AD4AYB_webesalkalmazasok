@@ -15,7 +15,10 @@ public class App {
 		ReservationService service = new ReservationServiceIMPL();
 		View view = new ViewIMPL();
 		App app = new App(service, view);
+		app.createBookingPerson();
 		app.book();
+		app.checkIn();
+		app.checkOut();
 	}
 	
 	public App(ReservationService service,View view) {
@@ -26,16 +29,16 @@ public class App {
 	public void createBookingPerson() {
 		BookingPerson person = view.readBookingPerson();
 		service.saveBookingPerson(person);
-	}
-	
-	public void book() {
-		createBookingPerson();
-		BookingPerson person = service.findBookingPerson();
 		view.printWelcomeMessage(person);
 		view.printBalance(person);
 	}
 	
+	public void book() {
+		view.printRooms(service.findAllHotels());
+	}
+	
 	public void checkIn() {
+		view.selectRoom(service.findAllHotels());
 		
 	}
 	
