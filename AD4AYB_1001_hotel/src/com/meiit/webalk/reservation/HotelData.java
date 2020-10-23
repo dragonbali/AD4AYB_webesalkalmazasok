@@ -43,7 +43,7 @@ public class HotelData {
 		room2.setBeds(4);
 		room2.setNumber(2);
 		room2.setPrice(BigDecimal.valueOf(1400));
-		room1.setWing(wing1);
+		room2.setWing(wing1);
 		rooms.add(room2);
 
 		Room room3 = new Room();
@@ -51,7 +51,7 @@ public class HotelData {
 		room3.setBeds(1);
 		room3.setNumber(3);
 		room3.setPrice(BigDecimal.valueOf(100));
-		room1.setWing(wing1);
+		room3.setWing(wing1);
 		rooms.add(room3);
 
 		Room room4 = new Room();
@@ -59,7 +59,7 @@ public class HotelData {
 		room4.setBeds(2);
 		room4.setNumber(4);
 		room4.setPrice(BigDecimal.valueOf(400));
-		room1.setWing(wing1);
+		room4.setWing(wing1);
 		rooms.add(room4);
 
 		wing1.setRooms(rooms);

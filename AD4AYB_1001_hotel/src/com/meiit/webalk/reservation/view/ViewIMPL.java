@@ -109,8 +109,13 @@ public class ViewIMPL implements View {
 
 	@Override
 	public void printCheckIn(Reservation reservation) {
+		System.out.println("Your reservations:");
+		System.out.print(reservation.getRoom().getWing().getFloor().getHotel().getName());
+		System.out.print(", Floor: " + reservation.getRoom().getWing().getFloor().getFloorNumber());
+		System.out.print(", Wing: " + reservation.getRoom().getWing().getWingType());
+		System.out.print(", Room: " + reservation.getRoom().getNumber());
+		System.out.println(", Room: " + reservation.getRoom().getBeds());	
 		System.out.println("Check in");
-		
 	}
 
 	@Override
