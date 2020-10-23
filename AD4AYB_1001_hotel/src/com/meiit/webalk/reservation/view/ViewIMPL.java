@@ -41,7 +41,7 @@ public class ViewIMPL implements View {
 
 	@Override
 	public void printRooms(List<Hotel> hotels) {
-		System.out.println("Where do you want to book? (Choose a number or press q for quit)");
+		System.out.println("Where do you want to book? (Choose a number or press 0 for quit)");
 		//>1: Hotel name: Hilton, Floor: 1, Wing: North, Room number: 1, Beds: 2, Room Price: 500 
 		int i = 0;
 		for (Hotel hotel : hotels) {
@@ -51,7 +51,7 @@ public class ViewIMPL implements View {
 						i++;
 						System.out.print(i + ": Hotel name: " + hotel.getName());
 						System.out.print(", Floor: " + floor.getFloorNumber());
-						System.out.print(", Wing: " + room.getWing());
+						System.out.print(", Wing: " + room.getWingType());
 						System.out.print(", Room number: " + room.getNumber());
 						System.out.print(", Beds: " + room.getBeds());
 						System.out.println(", Room price: " + room.getPrice());
@@ -62,25 +62,27 @@ public class ViewIMPL implements View {
 		
 	}
 
-	public String input = "";
+	int input = -1;
 	@Override
 	public Room selectRoom(List<Hotel> hotels) {
 		Room selectedRoom = null;
-		input = sc.next();
-		int i = 0;
-		for (Hotel hotel : hotels) {
-			for (Floor floor : hotel.getFloors()) {
-				for (Wing wing : floor.getWings()) {
-					for (Room room : wing.getRooms()) {
-						i++;
-						if (i == Integer.parseInt(input)) {
-							selectedRoom = room;
+		int i = 0;	
+			input = sc.nextInt();
+			if (input == 0) {
+				return null;
+			}
+			for (Hotel hotel : hotels) {
+				for (Floor floor : hotel.getFloors()) {
+					for (Wing wing : floor.getWings()) {
+						for (Room room : wing.getRooms()) {
+							i++;
+							if (i == input) {
+								selectedRoom = room;
+							}
 						}
 					}
 				}
 			}
-		}
-		
 		return selectedRoom;
 	}
 
@@ -93,9 +95,9 @@ public class ViewIMPL implements View {
 	public void printReservationSaved(Reservation reservation) {
 		System.out.println("The reservation successfully saved!");
 		System.out.print("Reservation details: ");
-		System.out.print(reservation.getRoom().getWing().getFloor().getHotel().getName());
-		System.out.print(", Floor: " + reservation.getRoom().getWing().getFloor().getFloorNumber());
-		System.out.print(", Wing: " + reservation.getRoom().getWingType());
+		//System.out.print(reservation.getRoom().getWing().getFloor().getHotel().getName());
+		//System.out.print(", Floor: " + reservation.getRoom().getWing().getFloor().getFloorNumber());
+		//System.out.print(", Wing: " + reservation.getRoom().getWingType());
 		System.out.print(", Room: " + reservation.getRoom().getNumber());
 		System.out.print(", Room: " + reservation.getRoom().getBeds());		
 	}
@@ -103,7 +105,6 @@ public class ViewIMPL implements View {
 	@Override
 	public void printNotEnoughBalance(BookingPerson reservation) {
 		System.out.println("Sorry you dont have enough balance! Please choose anoter room!");
-		System.out.println("Your Balance is:" + reservation.getBalance());
 	}
 
 	@Override
@@ -120,10 +121,6 @@ public class ViewIMPL implements View {
 	
 		refund = reservation.getAmount().doubleValue() * 0.1;
 		person.setBalance(person.getBalance().add(BigDecimal.valueOf(refund)));
-		
-	}
-	
-	public void printDetails(List<Hotel> a, Reservation reservation) {
 		
 	}
 	

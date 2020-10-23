@@ -36,7 +36,6 @@ public class ReservationServiceIMPL implements ReservationService {
 
 	@Override
 	public void saveReservation(Reservation reservation) {
-		reservation.setProcessed(true);
 		reservations.add(reservation);
 		
 	}
@@ -83,7 +82,7 @@ public class ReservationServiceIMPL implements ReservationService {
 		List<Room> rooms = new ArrayList<Room>();
 		Room room1 = new Room();
 		room1.setBalcon(true);
-		room1.setBeds(3);
+		room1.setBeds(2);
 		room1.setNumber(1);
 		room1.setPrice(BigDecimal.valueOf(400));
 		room1.setWingType(WingType.NORTH);
@@ -93,15 +92,15 @@ public class ReservationServiceIMPL implements ReservationService {
 		room2.setBalcon(true);
 		room2.setBeds(4);
 		room2.setNumber(2);
-		room2.setPrice(BigDecimal.valueOf(1200));
+		room2.setPrice(BigDecimal.valueOf(1400));
 		room2.setWingType(WingType.NORTH);
 		rooms.add(room2);
 
 		Room room3 = new Room();
 		room3.setBalcon(true);
-		room3.setBeds(2);
+		room3.setBeds(1);
 		room3.setNumber(3);
-		room3.setPrice(BigDecimal.valueOf(500));
+		room3.setPrice(BigDecimal.valueOf(100));
 		room3.setWingType(WingType.NORTH);
 		rooms.add(room3);
 
@@ -109,7 +108,7 @@ public class ReservationServiceIMPL implements ReservationService {
 		room4.setBalcon(false);
 		room4.setBeds(2);
 		room4.setNumber(4);
-		room4.setPrice(BigDecimal.valueOf(200));
+		room4.setPrice(BigDecimal.valueOf(400));
 		room4.setWingType(WingType.NORTH);
 		rooms.add(room4);
 
