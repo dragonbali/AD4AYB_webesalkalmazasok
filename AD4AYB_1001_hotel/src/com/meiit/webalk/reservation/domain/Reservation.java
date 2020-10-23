@@ -11,9 +11,7 @@ public class Reservation {
 	private boolean processed;
 	private Room room;
 	private BookingPerson person;
-	private Currency currency;
-	
-	
+	private Currency currency;	
 	
 	public Reservation(BigDecimal amount, LocalDateTime from, LocalDateTime to, boolean active, boolean processed,
 			Room room, BookingPerson person, Currency currency) {
@@ -27,24 +25,7 @@ public class Reservation {
 		this.person = person;
 		this.currency = currency;
 	}
-	/*public Reservation() 
-	{
-		super();
-	}
 	
-	public Reservation(BigDecimal amount, LocalDateTime from, LocalDateTime to, boolean active, boolean processed,
-			Currency currency, Room room, BookingPerson person)
-	{
-		super();
-		this.amount = amount;
-		this.from = from;
-		this.to = to;
-		this.active = active;
-		this.processed = processed;
-		this.currency = currency;
-		this.room = room;
-		this.person = person;
-	}*/
 	public BigDecimal getAmount() {
 		return amount;
 	}

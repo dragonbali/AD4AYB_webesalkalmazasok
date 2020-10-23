@@ -21,8 +21,8 @@ public class App {
 		App app = new App(service, view);
 		app.createBookingPerson();
 		app.book();
-	//	app.checkIn();
-	//	app.checkOut();
+		app.checkIn();
+		app.checkOut();
 	}
 	
 	public App(ReservationService service,View view) {
@@ -37,7 +37,7 @@ public class App {
 		view.printBalance(person);
 	}
 	
-public void book() {
+	public void book() {
 	Room selectedRoom = null;
 	BookingPerson person = service.findBookingPerson();
 		do {
@@ -52,7 +52,6 @@ public void book() {
 														  selectedRoom,
 														  person,
 														  person.getCurrency());
-				
 				service.saveReservation(reservation);
 				view.printReservationSaved(reservation);
 				person.setBalance(person.getBalance().subtract(selectedRoom.getPrice()));
@@ -68,14 +67,13 @@ public void book() {
 	}
 	
 	public void checkIn() {
-		Reservation reservation = service.findAllReservations().get(service.findAllHotels().size());
+		Reservation reservation = service.findAllReservations().get(service.findAllHotels().size()-1);
 		view.printCheckIn(reservation);
 		
 	}
 	
 	public void checkOut() {
-		Reservation reservation = service.findAllReservations().get(service.findAllHotels().size());
-		BookingPerson person = view.readBookingPerson();
-		view.printCheckOut(reservation, person);
+		Reservation reservation = service.findAllReservations().get(service.findAllHotels().size()-1);
+		view.printCheckOut(reservation, service.findBookingPerson());
 	}
 }

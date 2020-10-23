@@ -6,6 +6,14 @@ public class Wing {
 	private String description;
 	private Floor floor;
 	private List<Room> rooms;
+	private WingType wingType;
+	
+	public WingType getWingType() {
+		return wingType;
+	}
+	public void setWingType(WingType wingType) {
+		this.wingType = wingType;
+	}
 	public String getDescription() {
 		return description;
 	}

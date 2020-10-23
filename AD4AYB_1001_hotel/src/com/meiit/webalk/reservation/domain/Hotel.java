@@ -7,6 +7,7 @@ public class Hotel {
 	private String address;
 	private int stars;
 	private List<Floor>floors;
+	
 	public String getName() {
 		return name;
 	}

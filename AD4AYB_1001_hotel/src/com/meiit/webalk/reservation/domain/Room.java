@@ -39,13 +39,7 @@ public class Room {
 	public void setWing(Wing wing) {
 		this.wing = wing;
 	}
-	public WingType getWingType() {
-		return wingType;
-	}
-	public void setWingType(WingType wingType) {
-		this.wingType = wingType;
-	}
-	private WingType wingType;
+	
 	
 	
 	

@@ -51,7 +51,7 @@ public class ViewIMPL implements View {
 						i++;
 						System.out.print(i + ": Hotel name: " + hotel.getName());
 						System.out.print(", Floor: " + floor.getFloorNumber());
-						System.out.print(", Wing: " + room.getWingType());
+						System.out.print(", Wing: " + wing.getWingType());
 						System.out.print(", Room number: " + room.getNumber());
 						System.out.print(", Beds: " + room.getBeds());
 						System.out.println(", Room price: " + room.getPrice());
@@ -95,9 +95,9 @@ public class ViewIMPL implements View {
 	public void printReservationSaved(Reservation reservation) {
 		System.out.println("The reservation successfully saved!");
 		System.out.print("Reservation details: ");
-		//System.out.print(reservation.getRoom().getWing().getFloor().getHotel().getName());
-		//System.out.print(", Floor: " + reservation.getRoom().getWing().getFloor().getFloorNumber());
-		//System.out.print(", Wing: " + reservation.getRoom().getWingType());
+	    System.out.print(reservation.getRoom().getWing().getFloor().getHotel().getName());
+		System.out.print(", Floor: " + reservation.getRoom().getWing().getFloor().getFloorNumber());
+		System.out.print(", Wing: " + reservation.getRoom().getWing().getWingType());
 		System.out.print(", Room: " + reservation.getRoom().getNumber());
 		System.out.print(", Room: " + reservation.getRoom().getBeds());		
 	}
@@ -121,7 +121,7 @@ public class ViewIMPL implements View {
 	
 		refund = reservation.getAmount().doubleValue() * 0.1;
 		person.setBalance(person.getBalance().add(BigDecimal.valueOf(refund)));
-		
+		System.out.println("Your new balance is " + person.getBalance() + person.getCurrency() + " (balance after refund)");
 	}
 	
 }
