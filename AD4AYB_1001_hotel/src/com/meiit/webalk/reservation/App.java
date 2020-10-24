@@ -48,7 +48,8 @@ public class App {
 					break;
 				}
 				if ((selectedRoom == null) && wasASave == false) {
-					System.out.println("You tried to quit, but didnt chose any room. Try again");
+					System.out.println("You quit, but didn't chose any room. Program closed!");
+					System.exit(0);
 				}else {
 					Reservation reservation = new Reservation();
 
