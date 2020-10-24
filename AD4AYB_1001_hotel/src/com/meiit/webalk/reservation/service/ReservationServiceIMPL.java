@@ -32,8 +32,8 @@ public class ReservationServiceIMPL implements ReservationService {
 
 	@Override
 	public void saveReservation(Reservation reservation) {
-		reservations.add(reservation);
-		
+		reservation.setProcessed(true);
+		reservations.add(reservation);		
 	}
 
 	@Override
@@ -43,18 +43,17 @@ public class ReservationServiceIMPL implements ReservationService {
 
 	@Override
 	public void checkIn() {
-		for (int i = 0; i < reservations.size(); i++) {
-			reservations.get(i).setFrom(LocalDateTime.now());
-			reservations.get(i).setActive(true);		
+		for (Reservation reservation : reservations) {
+			reservation.setFrom(LocalDateTime.now());
+			reservation.setActive(true);
 		}
-		
 	}
 
 	@Override
 	public void checkOut() {
-		for (int i = 0; i < reservations.size(); i++) {
-			reservations.get(i).setTo(LocalDateTime.now());
-			reservations.get(i).setActive(false);		
+		for (Reservation reservation : reservations) {
+			reservation.setTo(LocalDateTime.now());
+			reservation.setActive(false);
 		}
 		
 	}

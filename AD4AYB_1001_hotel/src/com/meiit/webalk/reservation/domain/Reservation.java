@@ -13,22 +13,14 @@ public class Reservation {
 	private BookingPerson person;
 	private Currency currency;	
 	
-	public Reservation(BigDecimal amount, LocalDateTime from, LocalDateTime to, boolean active, boolean processed,
-			Room room, BookingPerson person, Currency currency) {
+	public Reservation() {
 		super();
-		this.amount = amount;
-		this.from = from;
-		this.to = to;
-		this.active = active;
-		this.processed = processed;
-		this.room = room;
-		this.person = person;
-		this.currency = currency;
 	}
 	
 	public BigDecimal getAmount() {
 		return amount;
 	}
+
 	public void setAmount(BigDecimal amount) {
 		this.amount = amount;
 	}

@@ -1,6 +1,5 @@
 package com.meiit.webalk.reservation;
 
-import java.time.LocalDateTime;
 
 import com.meiit.webalk.reservation.domain.BookingPerson;
 import com.meiit.webalk.reservation.domain.Reservation;
@@ -20,7 +19,7 @@ public class App {
 		View view = new ViewIMPL();
 		App app = new App(service, view);
 		app.createBookingPerson();
-		app.book2();
+		app.book();
 		app.checkIn();
 		app.checkOut();
 	}
@@ -37,7 +36,7 @@ public class App {
 		view.printBalance(person);
 	}
 	
-	public void book2() {
+	public void book() {
 		Room selectedRoom = null;
 		BookingPerson person = service.findBookingPerson();
 		boolean done = false;
@@ -51,68 +50,53 @@ public class App {
 				if ((selectedRoom == null) && wasASave == false) {
 					System.out.println("You tried to quit, but didnt chose any room. Try again");
 				}else {
-					Reservation reservation = new Reservation(selectedRoom.getPrice(), 
-															  LocalDateTime.now(), 
-															  LocalDateTime.now().plusDays(1),
-															  true,
-															  true,													  
-															  selectedRoom,
-															  person,
-															  person.getCurrency());
+					Reservation reservation = new Reservation();
+
+					reservation.setAmount(selectedRoom.getPrice());
+					reservation.setRoom(selectedRoom);
+					reservation.setPerson(person);
+					reservation.setCurrency(person.getCurrency());
 					
-					if (person.getBalance().compareTo(selectedRoom.getPrice()) >= 0) {
-						service.saveReservation(reservation);
+					service.saveReservation(reservation);
+					
+					if (person.getBalance().compareTo(selectedRoom.getPrice()) >= 0) {	
 						view.printReservationSaved(reservation);
 						person.setBalance(person.getBalance().subtract(selectedRoom.getPrice()));
-						wasASave = true;
-						
+						wasASave = true;						
 					}else {
 						view.printNotEnoughBalance(person);
 						selectedRoom = null;
-					}
-				
+					}				
 				view.printBalance(person);
 				}
 			}while(!done);
 		}
 	
-	public void book() {
-	Room selectedRoom = null;
-	BookingPerson person = service.findBookingPerson();
-		do {
-			view.printRooms(service.findAllHotels());
-			selectedRoom = view.selectRoom(service.findAllHotels());
-			if (person.getBalance().compareTo(selectedRoom.getPrice()) >= 0) {
-				Reservation reservation = new Reservation(selectedRoom.getPrice(), 
-														  LocalDateTime.now(), 
-														  LocalDateTime.now().plusDays(1),
-														  true,
-														  true,													  
-														  selectedRoom,
-														  person,
-														  person.getCurrency());
-				service.saveReservation(reservation);
-				view.printReservationSaved(reservation);
-				person.setBalance(person.getBalance().subtract(selectedRoom.getPrice()));
-				
-			}else {
-				view.printNotEnoughBalance(person);
-				selectedRoom = null;
-			}
-			
-			view.printBalance(person);
-			
-		}while(selectedRoom == null);
-	}
-	//azt ahol a reservationnal = a booking personnal
+	//check in only to the first reservation
 	public void checkIn() {
-		Reservation reservation = service.findAllReservations().get(service.findAllHotels().size()-1);
-		view.printCheckIn(reservation);
-		
+		BookingPerson person = service.findBookingPerson();
+		Reservation reservationAcutal = null;
+		for (Reservation reservation : service.findAllReservations()) {
+			if (reservation.getPerson() == person) {
+				reservationAcutal = reservation;
+				break;
+			}
+		}
+		service.checkIn();
+		view.printCheckIn(reservationAcutal);	
 	}
 	
+	//refund only for the first reservation
 	public void checkOut() {
-		Reservation reservation = service.findAllReservations().get(service.findAllHotels().size()-1);
-		view.printCheckOut(reservation, service.findBookingPerson());
+		BookingPerson person = service.findBookingPerson();
+		Reservation reservationAcutal = null;
+		for (Reservation reservation : service.findAllReservations()) {
+			if (reservation.getPerson() == person) {
+				reservationAcutal = reservation;
+				break;
+			}
+		}
+		service.checkOut();		
+		view.printCheckOut(reservationAcutal, service.findBookingPerson());
 	}
 }
