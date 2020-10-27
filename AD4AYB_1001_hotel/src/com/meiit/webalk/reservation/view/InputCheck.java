@@ -8,6 +8,8 @@ import com.meiit.webalk.reservation.domain.Room;
 import com.meiit.webalk.reservation.domain.Wing;
 
 public class InputCheck {
+	
+	//Very NICE
 
 	static boolean currencyCheck(String input) {
 		boolean isOK = false;
