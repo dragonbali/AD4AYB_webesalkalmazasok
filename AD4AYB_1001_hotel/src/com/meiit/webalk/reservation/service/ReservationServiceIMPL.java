@@ -43,6 +43,7 @@ public class ReservationServiceIMPL implements ReservationService {
 
 	@Override
 	public void checkIn() {
+		//1 person is not able to check in in more then 1 hotel in the same time please check in only 1 place
 		for (Reservation reservation : reservations) {
 			reservation.setFrom(LocalDateTime.now());
 			reservation.setActive(true);
@@ -51,6 +52,8 @@ public class ReservationServiceIMPL implements ReservationService {
 
 	@Override
 	public void checkOut() {
+		//same problem as in the check in
+		// Refund should be calculated here and booked to the persons balance
 		for (Reservation reservation : reservations) {
 			reservation.setTo(LocalDateTime.now());
 			reservation.setActive(false);
