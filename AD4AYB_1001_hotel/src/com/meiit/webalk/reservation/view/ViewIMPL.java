@@ -23,7 +23,7 @@ public class ViewIMPL implements View {
 		System.out.println("What's your name?");
 		input2 = sc.next();
 		bookingPerson.setName(input2);
-		
+	
 		do {
 			System.out.println("How much money do you have (more than 0)?");
 			input2 = sc.next();
@@ -141,7 +141,8 @@ public class ViewIMPL implements View {
 		System.out.println("Few days later");
 		System.out.println("Check out, Suprise! You are the 100th guest you get a 10% refund");
 		Double refund = 0.0;
-	
+		
+		//Refund should be calculated in service and use bigdecimal
 		refund = reservation.getAmount().doubleValue() * 0.1;
 		person.setBalance(person.getBalance().add(BigDecimal.valueOf(refund)));
 		System.out.println("Your new balance is " + person.getBalance() + person.getCurrency() + " (balance after refund)(only by the first)");
