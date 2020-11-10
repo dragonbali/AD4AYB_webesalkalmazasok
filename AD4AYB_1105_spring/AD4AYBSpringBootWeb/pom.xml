@@ -11,7 +11,7 @@
 	<groupId>hu.ad4ayb.springbootweb</groupId>
 	<artifactId>ad4aybspringbootweb</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>AD4AYBSpringBootWeb</name>
+	<name>ad4aybspringbootweb</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
@@ -21,9 +21,19 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+			<optional>true</optional>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>

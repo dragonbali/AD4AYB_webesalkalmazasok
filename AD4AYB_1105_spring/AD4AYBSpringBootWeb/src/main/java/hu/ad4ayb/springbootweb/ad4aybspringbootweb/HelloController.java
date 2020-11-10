@@ -1,6 +1,7 @@
-package hu.ad4ayb.springbootweb;
+package hu.ad4ayb.springbootweb.ad4aybspringbootweb;
 
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,5 +37,12 @@ public class HelloController {
 	@PostMapping(path = "/addpost/{a}/{b}")
 	public String addPost(@PathVariable int a, @PathVariable int b) {
 		return (a + "+" + b + " = " + (a + b));
+	}
+	
+	@GetMapping(value = "/weblap")
+	public ModelAndView getRoot() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("index");
+		return mav;
 	}
 }
