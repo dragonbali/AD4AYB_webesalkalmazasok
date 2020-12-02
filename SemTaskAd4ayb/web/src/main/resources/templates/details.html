@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en"xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+   <head>
+      <meta charset="UTF-8">
+      <link th:href="@{/styles/css/details.css}" rel="stylesheet" />
+      <title>Részletek</title>
+   </head>
+   <body>
+      <table>
+         <thead>
+            <tr>
+               <th th:text="${student.studentName}"></th>
+            </tr>
+            <tr>
+               <th>Feladat</th>
+               <th>Határido</th>
+               <th>Bekuldte</th>
+               <th>Megoldás</th>
+               <th>Állapot</th>
+               <th>Megjegyzés</th>
+            </tr>
+            <tr th:each="task: ${student.tasks}">
+               <th th:text="${task.title}"></th>
+               <th th:text="${#dates.format(task.deadline, 'yyyy-MM-dd')}"></th>
+               <th th:text="${#dates.format(task.receiptTime, 'yyyy-MM-dd')}"></th>
+               <th th:text="${task.solution}"></th>
+               <th style="background-color: #79FFA5;" th:if="${@listingService.notOrLate(task.deadline, task.receiptTime)}">Kész</th>
+               <th style="background-color: #FF5E5E;"th:unless="${@listingService.notOrLate(task.deadline, task.receiptTime)}">Nincs kész vagy késon teljesitette</th>
+               <th th:text="${task.comment}"></th>
+            </tr>
+         </thead>
+      </table>
+      <b>További tanárok:</b>
+      <ul>
+         <li th:each="teacher: ${student.teachers}" th:text="${teacher.teacherName}"></li>
+      </ul>
+      <form  style="padding: 35px;" method="get" action="/all">
+         <button class="button button5" type="submit">Vissza</button>
+      </form>
+   </body>
+</html>

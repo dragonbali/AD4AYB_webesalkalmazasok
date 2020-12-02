@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en"xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+   <head>
+      <meta charset="UTF-8">
+      <link th:href="@{/styles/css/all.css}" rel="stylesheet" />
+      <title>A diákjaim</title>      
+   </head>
+   <body>
+      <table th:each="student : ${students}">
+         <thead>
+            <tr>
+               <th th:text="${student.studentName}"></th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td th:text="'Feladatok száma: ' + ${#lists.size(student.tasks)}"></td>
+            </tr>
+            <tr>
+               <td style="background-color: #FF5E5E;" th:unless="${isOkList[studentStat.index]}"> Van késon bekuldott vagy megoldatlan feladata!</td>
+            </tr>
+            <tr>
+               <td>
+                  <form th:action="@{/all}" method="post" th:object="${index}">
+                     <button class="button2" style="vertical-align:middle" type="submit" th:name="index" th:value="${studentStat.index}" ><span>Tanuló részletei </span></button>
+                  </form>
+               </td>
+            </tr>
+         </tbody>
+      </table>
+      <form  style="padding: 35px;" method="get" action="/">
+         <button class="button5" type="submit">Vissza</button>
+      </form>
+   </body>
+</html>
