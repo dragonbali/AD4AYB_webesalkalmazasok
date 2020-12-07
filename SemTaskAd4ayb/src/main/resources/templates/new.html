@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>új Házi feldat</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link th:href="@{/styles/css/all.css}" rel="stylesheet" />
+</head>
+<body>
+<div class="all">
+	<h1 class="newh1">Házi kiadása</h1>
+	<div class="new">
+		<form action="#" th:action="@{/new}" th:object="${task}" method="post">
+		    <p>Tantárgy: <input type="text" th:field="*{lesson}"/></p>
+		    <p>Feladat: <input type="text" th:field="*{todo}"/></p>
+		    <p>Határido: <input type="date" th:field="*{date}"/></p>
+		    <p><input type="submit" value="Új hozzáadása"/></p>
+		</form>
+	</div>
+	<form action="/all" method="get">
+	    <button type="submit" class="button button5">Vissza</button>
+	</form>
+	</div>
+</body>
+</html>

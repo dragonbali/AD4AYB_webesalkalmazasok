@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en"xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+   <head>
+      <meta charset="UTF-8">
+      <link th:href="@{/styles/css/all.css}" rel="stylesheet" />
+      <title>Házi feladatok</title>      
+   </head>
+   <body>
+   <div class="all">
+       <table>
+         <thead>
+            <tr>
+               <th>Tantárgy</th>
+               <th>Feladat</th>
+               <th>Határido</th>
+            </tr>
+            </thead>
+            <tr th:each="task: ${tasks}">
+               <td th:text="${task.lesson}"></td>
+               <td th:text="${task.todo}"></td>
+               <td th:text="${#dates.format(task.date, 'yyyy-MM-dd')}"></td>
+               <td>
+               		<form th:action="@{/delete}" th:object="${task}" method="post">
+				        <button class="button button5" type="submit" id="delete">Torles</button>
+				        <input type="hidden" name="id" th:value="${task.id}">
+				     </form>
+				</td>   
+				<td>   
+				     <form th:action="@{/update}" th:object="${task}" method="post">
+				        <button class="button button5" type="submit" id="update">Módosítás</button>
+				        <input type="hidden" name="id" th:value="${task.id}">
+						<input type="hidden" name="lesson" th:value="${task.lesson}">
+						<input type="hidden" name="todo" th:value="${task.todo}">
+						<input type="hidden" name="date" th:value="${task.date}">
+				     </form>
+               </td>
+            </tr>
+         
+      </table>
+      <form action="/new" method="get">
+        <button class="button button5" type="submit" id="new">Új házi feladat kiírása</button>
+      </form>
+      <form  style="padding: 35px;" method="get" action="/">
+         <button class="button button5" type="submit">Vissza</button>
+      </form>
+      </div>
+   </body>
+</html>
