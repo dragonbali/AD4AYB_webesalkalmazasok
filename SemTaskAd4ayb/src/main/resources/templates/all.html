@@ -6,26 +6,39 @@
       <title>Házi feladatok</title>      
    </head>
    <body>
+   <div class="nav">
+		<form method="get" action="/index">
+	          <button class="button button5" type="submit"><span>Főoldal</span></button>
+	    </form>
+		<form method="get" action="/all">
+	          <button class="button button5" type="submit"><span>Feladatok listázása</span></button>
+	    </form>
+	    <form action="/new" method="get">
+	        <button class="button button5" type="submit" id="new">Új házi feladat kiírása</button>
+	      </form>
+	    <form th:action="@{/logout}" method="post">
+			  <button class="button button5 logout" type="submit"><span>Kijentkezés</span></button>
+		</form>
+	</div>
    <div class="all">
+   <img class="homework" src="https://i.ibb.co/0ffrYV6/homework.png" alt="homework">
        <table>
          <thead>
             <tr>
                <th>Tantárgy</th>
                <th>Feladat</th>
-               <th>Határido</th>
+               <th>Határidő</th>
             </tr>
             </thead>
             <tr th:each="task: ${tasks}">
                <td th:text="${task.lesson}"></td>
                <td th:text="${task.todo}"></td>
                <td th:text="${#dates.format(task.date, 'yyyy-MM-dd')}"></td>
-               <td>
+               <td class="deleteupdate">
                		<form th:action="@{/delete}" th:object="${task}" method="post">
-				        <button class="button button5" type="submit" id="delete">Torles</button>
+				        <button class="button button5" type="submit" id="delete" style="position: relative">Törlés</button>
 				        <input type="hidden" name="id" th:value="${task.id}">
-				     </form>
-				</td>   
-				<td>   
+				     </form>   
 				     <form th:action="@{/update}" th:object="${task}" method="post">
 				        <button class="button button5" type="submit" id="update">Módosítás</button>
 				        <input type="hidden" name="id" th:value="${task.id}">
@@ -37,12 +50,6 @@
             </tr>
          
       </table>
-      <form action="/new" method="get">
-        <button class="button button5" type="submit" id="new">Új házi feladat kiírása</button>
-      </form>
-      <form  style="padding: 35px;" method="get" action="/">
-         <button class="button button5" type="submit">Vissza</button>
-      </form>
       </div>
    </body>
 </html>
