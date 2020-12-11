@@ -74,20 +74,20 @@ public class TestDataGenerator implements CommandLineRunner {
         		new BigDecimal(20000), LocalDate.of(1999, 1, 2), Currency.HUF);
         bookingPersonRepository.save(bookingPerson);
 
-        Hotel hotel = new Hotel("Hilton","Washington street 1.",4);
+        Hotel hotel = new Hotel("Hilton","Budapest, Hess András tér 1-3, 1014",5);
         hotelRepository.save(hotel);
 
         Floor floor = new Floor(1,hotel);
         floorRepository.save(floor);
 
-        Wing wing = new Wing("Very good.",floor, WingType.NORTH);
+        Wing wing = new Wing("Clean.",floor, WingType.NORTH);
         wingRepository.save(wing);
 
-        Room room1 = new Room(1, 2, true, wing, new BigDecimal(500), Currency.HUF);
+        Room room1 = new Room(1, 2, true, wing, new BigDecimal(600), Currency.HUF);
         roomRepository.save(room1);
-        Room room2 = new Room(2, 4, true, wing, new BigDecimal(1500), Currency.HUF);
+        Room room2 = new Room(2, 4, false, wing, new BigDecimal(1500), Currency.HUF);
         roomRepository.save(room2);
-        Room room3 = new Room(3, 1, true, wing, new BigDecimal(200), Currency.HUF);
+        Room room3 = new Room(3, 1, true, wing, new BigDecimal(400), Currency.HUF);
         roomRepository.save(room3);
         Room room4 = new Room(4, 2, true, wing, new BigDecimal(500), Currency.HUF);
         roomRepository.save(room4);
