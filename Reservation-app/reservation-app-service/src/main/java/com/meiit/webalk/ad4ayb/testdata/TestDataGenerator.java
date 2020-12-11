@@ -25,18 +25,44 @@ import java.time.LocalDateTime;
 @Component
 public class TestDataGenerator implements CommandLineRunner {
 
-	@Autowired
     private BookingPersonRepository bookingPersonRepository;
-    @Autowired
     private HotelRepository hotelRepository;
-    @Autowired
     private FloorRepository floorRepository;
-    @Autowired
     private WingRepository wingRepository;
-    @Autowired
     private RoomRepository roomRepository;
+    
     @Autowired
-    private ReservationRepository reservationRepository;
+    public void setBookingPersonRepository(BookingPersonRepository bookingPersonRepository) {
+		this.bookingPersonRepository = bookingPersonRepository;
+	}
+
+    @Autowired
+	public void setHotelRepository(HotelRepository hotelRepository) {
+		this.hotelRepository = hotelRepository;
+	}
+
+    @Autowired
+	public void setFloorRepository(FloorRepository floorRepository) {
+		this.floorRepository = floorRepository;
+	}
+
+    @Autowired
+	public void setWingRepository(WingRepository wingRepository) {
+		this.wingRepository = wingRepository;
+	}
+
+    @Autowired
+	public void setRoomRepository(RoomRepository roomRepository) {
+		this.roomRepository = roomRepository;
+	}
+
+    @Autowired
+	public void setReservationRepository(ReservationRepository reservationRepository) {
+		this.reservationRepository = reservationRepository;
+	}
+
+    @Autowired
+	private ReservationRepository reservationRepository;
 
     @Override
     public void run(String... args) throws Exception {

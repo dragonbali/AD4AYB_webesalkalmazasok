@@ -14,13 +14,21 @@ import com.meiit.webalk.ad4ayb.services.interfaces.IReservationService;
 @Service
 public class ReservationService implements IReservationService {
 	
-	@Autowired
     BookingPersonRepository bookingPersonRepository;
-    @Autowired
     ReservationRepository reservationRepository;
+	
+	@Autowired
+	public void setBookingPersonRepository(BookingPersonRepository bookingPersonRepository) {
+		this.bookingPersonRepository = bookingPersonRepository;
+	}
+
+	@Autowired
+	public void setReservationRepository(ReservationRepository reservationRepository) {
+		this.reservationRepository = reservationRepository;
+	}
 
 	@Override
-    public List<Reservation> findReservationsByEmail(String email) {
+    public List<Reservation> getReservationsByEmail(String email) {
         BookingPerson bookingPerson = bookingPersonRepository.findByEmail(email);
         List<Reservation> reservations = reservationRepository.findAllByBookingPerson(bookingPerson);
         
@@ -31,7 +39,7 @@ public class ReservationService implements IReservationService {
     }
 	
 	@Override
-    public void saveReservation(Reservation reservation) {
+    public void addReservation(Reservation reservation) {
         reservationRepository.save(reservation);
     }
 	

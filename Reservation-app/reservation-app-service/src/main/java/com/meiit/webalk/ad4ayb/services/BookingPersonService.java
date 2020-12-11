@@ -10,17 +10,22 @@ import com.meiit.webalk.ad4ayb.services.interfaces.IBookingPersonService;
 @Service
 public class BookingPersonService implements IBookingPersonService {
 	
-	 @Autowired
+	 
 	 BookingPersonRepository bookingPersonRepository;
 	 
-	    @Override
-	    public BookingPerson findByEmail(String email) {
+	 @Autowired
+	 public void setBookingPersonRepository(BookingPersonRepository bookingPersonRepository) {
+		this.bookingPersonRepository = bookingPersonRepository;
+	}
+
+		@Override
+	    public BookingPerson getBookingPersonByEmail(String email) {
 	        BookingPerson bookingPerson = bookingPersonRepository.findByEmail(email);
 	        return bookingPerson;
 	    }
 	    
 	    @Override
-	    public void saveBookingPerson(BookingPerson bookingPerson) {
+	    public void addBookingPerson(BookingPerson bookingPerson) {
 	        bookingPersonRepository.save(bookingPerson);
 	    }
 

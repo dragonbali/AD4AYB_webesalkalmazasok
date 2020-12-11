@@ -4,7 +4,7 @@ import com.meiit.webalk.ad4ayb.BookingPerson;
 
 public interface IBookingPersonService {
 	
-	public BookingPerson findByEmail(String email);
-	public void saveBookingPerson(BookingPerson bookingPerson);
+	public BookingPerson getBookingPersonByEmail(String email);
+	public void addBookingPerson(BookingPerson bookingPerson);
 
 }

@@ -6,7 +6,7 @@ import com.meiit.webalk.ad4ayb.Reservation;
 
 public interface IReservationService {
 
-	public List<Reservation> findReservationsByEmail(String email);
-	public void saveReservation(Reservation reservation);
+	public List<Reservation> getReservationsByEmail(String email);
+	public void addReservation(Reservation reservation);
     public void deleteReservation(Reservation reservation);
 }

@@ -16,14 +16,31 @@ import com.meiit.webalk.ad4ayb.services.interfaces.IHotelService;
 
 public class HotelService implements IHotelService{
 	
-    @Autowired
+    
     HotelRepository hotelRepository;
-    @Autowired
     FloorRepository floorRepository;
-    @Autowired
     WingRepository wingRepository;
-    @Autowired
     RoomRepository roomRepository;
+    
+    @Autowired
+    public void setHotelRepository(HotelRepository hotelRepository) {
+		this.hotelRepository = hotelRepository;
+	}
+
+    @Autowired
+	public void setFloorRepository(FloorRepository floorRepository) {
+		this.floorRepository = floorRepository;
+	}
+
+    @Autowired
+	public void setWingRepository(WingRepository wingRepository) {
+		this.wingRepository = wingRepository;
+	}
+
+    @Autowired
+	public void setRoomRepository(RoomRepository roomRepository) {
+		this.roomRepository = roomRepository;
+	}
 
 	@Override
 	public List<Hotel> getAllHotels() {
