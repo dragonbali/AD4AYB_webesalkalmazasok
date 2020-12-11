@@ -1,24 +1,31 @@
 package com.meiit.webalk.ad4ayb;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import javax.persistence.*;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-@Data
-public class User{
+@Getter
+@Setter
+public class User {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
-	@Column
+	@Column(nullable = false, unique = true)
 	private String email;
 	private String password;
+
+	public User(){
+		super();
+	}
+
+	public User(String email, String password) {
+		super();
+		this.email = email;
+		this.password = password;
+	}
 	
 }

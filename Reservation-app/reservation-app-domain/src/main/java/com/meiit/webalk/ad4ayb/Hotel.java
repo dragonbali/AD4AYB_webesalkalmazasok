@@ -1,26 +1,37 @@
 package com.meiit.webalk.ad4ayb;
 
+import javax.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.util.ArrayList;
 import java.util.List;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.PrimaryKeyJoinColumn;
-
-import lombok.Data;
 
 @Entity
 @PrimaryKeyJoinColumn(referencedColumnName = "id")
-@Data
+@Getter
+@Setter
 public class Hotel {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
 	private String name;
 	private String address;
-	private int stars;
+	private Integer stars;
 	@OneToMany
-	private List<Floor>floors;
+	private List<Floor> floors;
+
+	public Hotel(){
+		super();
+	}
+
+	public Hotel(String name, String address, Integer stars) {
+		super();
+		this.name = name;
+		this.address = address;
+		this.stars = stars;
+		this.floors = new ArrayList<>();
+	}
+	
 }

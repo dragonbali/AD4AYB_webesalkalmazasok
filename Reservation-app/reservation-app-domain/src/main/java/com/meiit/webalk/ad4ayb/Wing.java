@@ -1,22 +1,19 @@
 package com.meiit.webalk.ad4ayb;
 
+import javax.persistence.*;
+
+import lombok.Getter;
+import lombok.Setter;
+
+import java.util.ArrayList;
 import java.util.List;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.PrimaryKeyJoinColumn;
-
-import lombok.Data;
 
 @Entity
 @PrimaryKeyJoinColumn(referencedColumnName = "id")
-@Data
+@Getter
+@Setter
 public class Wing {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
@@ -25,7 +22,19 @@ public class Wing {
 	private Floor floor;
 	@OneToMany
 	private List<Room> rooms;
-	@Column
+	@Enumerated(EnumType.STRING)
 	private WingType wingType;
+
+	public Wing(){
+		super();
+	}
+
+	public Wing(String description, Floor floor, WingType wingType) {
+		super();
+		this.description = description;
+		this.floor = floor;
+		this.rooms = new ArrayList<>();
+		this.wingType = wingType;
+	}
 	
 }
