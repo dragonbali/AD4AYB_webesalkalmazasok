@@ -92,7 +92,7 @@ public class TestDataGenerator implements CommandLineRunner {
         Room room4 = new Room(4, 2, true, wing, new BigDecimal(500), Currency.HUF);
         roomRepository.save(room4);
 
-        Reservation reservation = new Reservation( new BigDecimal(1), LocalDateTime.of(2020,12,1,14,0), LocalDateTime.of(2020,12,5,10,0),
+        Reservation reservation = new Reservation( new BigDecimal(100), LocalDateTime.of(2020,12,1,14,0), LocalDateTime.of(2020,12,5,10,0),
         		false, false, bookingPerson, room2);
         reservationRepository.save(reservation);
         

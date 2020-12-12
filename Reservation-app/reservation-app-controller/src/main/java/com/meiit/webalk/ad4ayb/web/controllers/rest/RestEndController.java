@@ -1,4 +1,4 @@
-package com.meiit.webalk.ad4ayb.web.controllers;
+package com.meiit.webalk.ad4ayb.web.controllers.rest;
 
 import java.util.List;
 import java.util.Optional;

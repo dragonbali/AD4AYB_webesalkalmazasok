@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Reservations</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-dark navbar-expand-lg bg-dark">
+    <span class="navbar-brand text-light">Reservation</span>
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+            <a class="nav-link" href="/userInfo">Home</a>
+        </li>
+        <li class="nav-item disabled">
+            <a class="nav-link" href="#">Hotels</a>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                Dropdown
+            </a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">English</a>
+                <a class="dropdown-item" href="#">Deutsch</a>
+                <a class="dropdown-item" href="#">Magyar</a>
+            </div>
+        </li>
+    </ul>
+    <form th:action="@{/logout}" method="post" class="form-inline" style="float: right;">
+        <input type="submit" value="Logout" class="btn btn-outline-light"/>
+    </form>
+</nav>
+	<div class="card border-primary" style="width: auto; margin: 2rem;">
+    <div class="card-header bg-primary text-white">
+        Person details
+    </div>
+    <div class="card-body">
+        <form action="#" th:action="@{/userInfoModify}" th:object="${bookingPerson}" method="post" class="form-group">
+            <input type="hidden" th:value="${bookingPerson.id}" th:field="*{id}"/>
+            <p>Name: <input type="text" th:value="${bookingPerson.name}" th:field="*{name}" class="form-control"/></p>
+            <p>Date of birth: <input type="text" th:value="${bookingPerson.birth}" th:field="*{birth}" readonly class="form-control"/></p>           
+			<input type="hidden" th:value="${bookingPerson.email}" th:field="*{email}" readonly class="form-control"/>
+            <p>Account number: <input type="text" th:value="${bookingPerson.accountNumber}" th:field="*{accountNumber}" class="form-control"/></p>
+            <p>Currency: <input type="text" th:value="${bookingPerson.currency}" th:field="*{currency}" readonly class="form-control"/></p>
+            <p>Balance: <input type="text" th:value="${bookingPerson.balance}" th:field="*{balance}" readonly class="form-control"/></p>
+            <p><input type="submit" value="Save" class="btn btn-primary"/></p>
+        </form>
+    </div>
+</div>
+<div th:if="${reservations != null}" class="card border-primary" style="margin: 2rem;">
+    <div class="card-header bg-primary text-white">Reservations</div>
+    <div class="card-body">
+        <table class="table border-secondary table-bordered">
+            <thead class="thead-light">
+            <tr>
+                <th></th>
+                <th>#</th>
+                <th>Hotel</th>
+                <th>Floor</th>
+                <th>Wing</th>
+                <th>Room</th>
+                <th>Beds</th>
+                <th>Balcony</th>
+                <th>From</th>
+                <th>To</th>
+                <th>Amount</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="reservation : ${reservations}">
+            <td>
+                    <form th:action="@{/deleteReservation}" th:object="${reservation}" method="post">
+                        <input type="hidden" name="id" th:value="${reservation.id}">
+                        <input type="hidden" name="name" th:value="${reservation.amount}">
+                        <input type="hidden" name="mass" th:value="${reservation.fromTime}">
+                        <input type="hidden" name="radius" th:value="${reservation.toTime}">
+                        <input type="hidden" name="type" th:value="${reservation.active}">
+                        <input type="hidden" name="type" th:value="${reservation.processed}">
+                        <button type="submit" class="btn btn-primary btn-sm">Remove</button>
+                    </form>
+                </td>
+                <td><span th:text="${reservation.id}"> </span></td>
+                <td><span th:text="${reservation.room.wing.floor.hotel.name}"></span></td>
+				<td><span th:text="${reservation.room.wing.floor.floorNumber}"></span></td>
+				<td><span th:text="${reservation.room.wing.wingType}"></span></td>
+				<td><span th:text="${reservation.room.number}"></span></td>
+				<td><span th:text="${reservation.room.beds}"></span></td>
+				<td><span th:text="${reservation.room.balcon} ? 'Yes' : 'No'"></span></td>
+                <td><span th:text="${#temporals.format(reservation.fromTime, 'yyyy-MM-dd HH:mm')}"></span></td>
+                <td><span th:text="${#temporals.format(reservation.toTime, 'yyyy-MM-dd HH:mm')}"></span></td>
+                <td><span th:text="${reservation.amount}"> </span></td>     
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+</html>
