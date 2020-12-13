@@ -3,6 +3,7 @@ package com.meiit.webalk.ad4ayb.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.meiit.webalk.ad4ayb.Floor;
 import com.meiit.webalk.ad4ayb.Hotel;
@@ -14,6 +15,7 @@ import com.meiit.webalk.ad4ayb.repositories.RoomRepository;
 import com.meiit.webalk.ad4ayb.repositories.WingRepository;
 import com.meiit.webalk.ad4ayb.services.interfaces.IHotelService;
 
+@Service
 public class HotelService implements IHotelService{
 	
     

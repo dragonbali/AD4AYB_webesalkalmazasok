@@ -26,7 +26,15 @@ public class UserInfoController {
 	public void setReservationService(ReservationService reservationService) {
 		this.reservationService = reservationService;
 	}
-
+	
+	@GetMapping("/")
+	public String getHome(Model model) {
+			//az email a secuitybol jon majd valojaban
+			String testuseremail = "balu@balu.hu";
+		model.addAttribute("bookingPerson",bookingPersonService.getBookingPersonByEmail(testuseremail));
+		model.addAttribute("reservations", reservationService.getReservationsByEmail(testuseremail));	
+		return "userInfo";
+	}
 
 	@GetMapping("/userInfo")
 	public String getUserInfo(Model model) {

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Reservations</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+</head>
+<body>
+	<nav class="navbar navbar-dark navbar-expand-lg bg-dark">
+		<span class="navbar-brand text-light">Reservation</span>
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item"><a class="nav-link" href="/userInfo">Home</a>
+			</li>
+			<li class="nav-item disabled"><a class="nav-link  active"
+				href="/hotels">Hotels</a></li>
+			<li class="nav-item dropdown"><a
+				class="nav-link dropdown-toggle" href="#" role="button"
+				data-toggle="dropdown"> Language </a>
+				<div class="dropdown-menu">
+					<a class="dropdown-item" href="#">English</a> <a
+						class="dropdown-item" href="#">Deutsch</a> <a
+						class="dropdown-item" href="#">Magyar</a>
+				</div></li>
+		</ul>
+		<form th:action="@{/logout}" method="post" class="form-inline"
+			style="float: right;">
+			<input type="submit" value="Logout" class="btn btn-outline-light" />
+		</form>
+	</nav>
+	      <div class="card border-primary" style="margin: 2rem;">
+         <div class="card-header bg-primary text-white">Hotel</div>
+         <div class="card-body">
+            <table class="table border-secondary table-bordered">
+               <thead class="thead-light">
+                  <tr>
+                     <th>Hotel</th>
+                     <th>Address</th>
+                     <th>Stars</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td><span th:text="${hotel.name}"> </span></td>
+                     <td><span th:text="${hotel.address}"></span></td>
+                     <td><span th:text="${hotel.stars}"></span></td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+	<div class="card border-primary" style="margin: 2rem;">
+		<div class="card-header bg-primary text-white">Wings</div>
+		<div class="card-body">
+			<table class="table border-secondary table-bordered">
+				<thead class="thead-light">
+					<tr>
+						<th></th>
+						<th>Wing Type</th>
+						<th>Description</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="wing : ${wings}">
+						<td>
+							<form th:action="@{'/chosenWing'}" th:object="${wing}"
+								method="post">
+								<input type="hidden" name="id" th:value="${wing.id}"> 
+								<input type="hidden" name="description" th:value="${wing.description}">  
+								<input type="hidden" name="wingType" th:value="${wing.wingType}">
+								<button type="submit" class="btn btn-primary btn-sm">Book</button>
+							</form>
+						</td>
+						<td th:text="${wing.wingType}"></td>
+						<td th:text="${wing.description}"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+		crossorigin="anonymous"></script>
+
+</body>
+</html>

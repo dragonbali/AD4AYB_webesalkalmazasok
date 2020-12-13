@@ -9,7 +9,7 @@ import com.meiit.webalk.ad4ayb.Reservation;
 import com.meiit.webalk.ad4ayb.services.ReservationService;
 
 @Controller
-public class ReservationsController {
+public class DeleteReservationsController {
 
 	ReservationService reservationService;
 
