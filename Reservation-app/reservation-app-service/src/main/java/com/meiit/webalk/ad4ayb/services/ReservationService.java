@@ -1,7 +1,7 @@
 package com.meiit.webalk.ad4ayb.services;
 
+import java.math.BigDecimal;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,11 +40,20 @@ public class ReservationService implements IReservationService {
 	
 	@Override
     public void addReservation(Reservation reservation) {
+		BigDecimal newBalance = reservation.getBookingPerson().getBalance();
+		newBalance = newBalance.subtract(reservation.getAmount());
+		reservation.getBookingPerson().setBalance(newBalance);
         reservationRepository.save(reservation);
     }
 	
 	@Override
     public void deleteReservation(Reservation reservation) {
+		List <Reservation> reservations = (List<Reservation>) reservationRepository.findAll();
+		for (Reservation reservationMy : reservations) {
+			if (reservationMy.getId().equals(reservation.getId())) {
+				reservationMy.getBookingPerson().setBalance(reservationMy.getBookingPerson().getBalance().add(reservationMy.getAmount()));
+			}
+		}
         reservationRepository.delete(reservation);
     }
 	

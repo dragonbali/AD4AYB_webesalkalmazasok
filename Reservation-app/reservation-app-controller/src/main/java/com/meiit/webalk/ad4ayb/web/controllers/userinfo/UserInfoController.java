@@ -1,5 +1,7 @@
 package com.meiit.webalk.ad4ayb.web.controllers.userinfo;
 
+import java.security.Principal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,21 +29,19 @@ public class UserInfoController {
 		this.reservationService = reservationService;
 	}
 	
+	
+	
 	@GetMapping("/")
-	public String getHome(Model model) {
-			//az email a secuitybol jon majd valojaban
-			String testuseremail = "balu@balu.hu";
-		model.addAttribute("bookingPerson",bookingPersonService.getBookingPersonByEmail(testuseremail));
-		model.addAttribute("reservations", reservationService.getReservationsByEmail(testuseremail));	
+	public String getHome(Model model, Principal principal) {
+		model.addAttribute("bookingPerson",bookingPersonService.getBookingPersonByEmail(principal.getName()));
+		model.addAttribute("reservations", reservationService.getReservationsByEmail(principal.getName()));	
 		return "userInfo";
 	}
 
 	@GetMapping("/userInfo")
-	public String getUserInfo(Model model) {
-			//az email a secuitybol jon majd valojaban
-			String testuseremail = "balu@balu.hu";
-		model.addAttribute("bookingPerson",bookingPersonService.getBookingPersonByEmail(testuseremail));
-		model.addAttribute("reservations", reservationService.getReservationsByEmail(testuseremail));	
+	public String getUserInfo(Model model, Principal principal) {
+		model.addAttribute("bookingPerson",bookingPersonService.getBookingPersonByEmail(principal.getName()));
+		model.addAttribute("reservations", reservationService.getReservationsByEmail(principal.getName()));	
 		return "userInfo";
 	}
 	

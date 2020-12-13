@@ -56,46 +56,75 @@
             </table>
          </div>
       </div>
-	<div class="card border-primary" style="margin: 2rem;">
+      
+      
+ <div class="card border-primary" style="margin: 2rem;">
 		<div class="card-header bg-primary text-white">Rooms</div>
 		<div class="card-body">
-			<table class="table border-secondary table-bordered">
-				<thead class="thead-light">
-					<tr>
-						<th></th>
-						<th>Room number</th>
-						<th>Beds</th>
-						<th>Balcony</th>
-						<th>price</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="room : ${rooms}">
-						<td>
-							<form action="@{'/chosenRoom'}" method="post" th:object="${room}" class="form-group blu-margin">
-					            <select class="form-control" th:field="*{id}">
-					                <option value="">--</option>
-					                <option th:each="room: ${rooms}" th:value="${id}" th:text="
-					                'Room number: ' + ${room.number}
+				<form th:action="@{'/chosenRoom'}" th:object="${room}" method="post" class="form-group blu-margin">
+		            <select class="form-control">
+		                <option value="">Not working! Please chose from the table!</option>
+		                <option th:each="room: ${rooms}" th:value="${room}"
+		                 th:text="
+					                'Room number: ' + ${room.number} +
 					                ' Beds: ' + ${room.beds} +
 					                ' Balcony: ' + ${room.balcon} +
 					                ' Price: ' + ${room.price} +
-					                ' Currency: ' + ${room.currency} +
+					                ' Currency: ' + ${room.currency}
 					                ">
-					                </option>
-					            </select>
-					            <input type="submit" value="Create reservation" class="btn btn-primary" style="margin: 1rem; float: right"/>
-					        </form>
-						</td>
-						<td th:text="${wing.wingType}"></td>
-						<td th:text="${wing.description}"></td>
-					</tr>
-				</tbody>
-			</table>
+		                </option>
+		            </select>
+		            <button type="submit" class="btn btn-primary btn-sm" style="margin: 1rem; pointer-events: none">Create Reservation</button>
+		        </form>
+		        <form action="/floors">
+			   		 <input class="btn btn-primary btn-sm" type="submit" value="Cancel" />
+				</form>
 		</div>
 	</div>
-
-
+	
+	 <div class="card border-primary" style="margin: 2rem;">
+         <div class="card-header bg-primary text-white">Rooms</div>
+         <div class="card-body">
+            <table class="table border-secondary table-bordered">
+               <thead class="thead-light">
+                  <tr>
+                     <th></th>
+                     <th>Room Number</th>
+                     <th>Beds</th>
+                     <th>Balcony</th>
+                     <th>Price</th>
+                     <th>Currency</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr th:each="room : ${rooms}">
+                     <td>
+                        <form th:action="@{'/chosenRoom'}" th:object="${room}" method="post">
+                           <input type="hidden" name="id" th:value="${room.id}">
+                           <input type="hidden" name="number" th:value="${room.number}"> 
+                           <input type="hidden" name="beds" th:value="${room.beds}"> 
+                           <input type="hidden" name="balcon" th:value="${room.balcon}"> 
+                           <input type="hidden" name="price" th:value="${room.price}"> 
+                           <input type="hidden" name="currency" th:value="${room.currency}"> 
+                           <button type="submit" class="btn btn-primary btn-sm">Book</button>
+                        </form>
+                     </td>
+                     <td th:text="${room.number}"></td>
+                     <td th:text="${room.beds}"></td>
+                     <td th:text="${room.balcon} ? 'Yes' : 'No'"></td>
+                     <td th:text="${room.price}"></td>
+                     <td th:text="${room.currency}"></td>
+                  </tr>
+               </tbody>
+            </table>
+            <form action="/floors">
+			    <input class="btn btn-primary btn-sm" type="submit" value="Cancel" />
+			</form>
+         </div>
+      </div>
+	
+	
+	
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
 		crossorigin="anonymous"></script>
